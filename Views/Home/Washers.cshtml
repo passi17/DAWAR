@@ -1,0 +1,959 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<style>
+    * {
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    /*hero*/
+    .hero {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 80px 8%;
+        background: linear-gradient(rgb(238, 242, 243), rgb(142, 158, 171));
+        gap: 90px;
+        flex-wrap: wrap;
+    }
+
+    .hero-text {
+        flex: 1;
+    }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+    .hero-btn-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .hero-btn {
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        transition: 0.3s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-btn-primary {
+        background: #343a40;
+        color: #fff;
+    }
+
+        .hero-btn-primary:hover {
+            background: #23272b;
+        }
+
+    .hero-btn-secondary {
+        background: white;
+        border: 2px solid black;
+        color: #333;
+    }
+
+        .hero-btn-secondary:hover {
+            background: #dee2e6;
+        }
+
+    .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background-color: white;
+            border: 5px solid black;
+        }
+
+    /* ===== MODAL ===== */
+
+    .modal {
+        position: fixed;
+        inset: 0;
+        /* shorthand for top:0; right:0; bottom:0; left:0 */
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .modal-content {
+        background: #fff;
+        padding: 30px 25px;
+        border-radius: 12px;
+        width: 450px;
+        max-width: 90%;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        animation: modalFade 0.3s ease-out;
+    }
+
+    @@keyframes modalFade {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    .modal-content h2 {
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        color: #333;
+        text-align: center;
+    }
+
+    .modal-content form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .modal-content input {
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+    }
+
+    .modal-content button {
+        padding: 12px 20px;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .modal-content button#closeBtn {
+            background: #dc3545;
+            color: #fff;
+        }
+
+            .modal-content button#closeBtn:hover {
+                background: #c82333;
+            }
+
+        .modal-content button.cta-btn {
+            background: #25d366;
+            color: #fff;
+            font-weight: bold;
+        }
+
+            .modal-content button.cta-btn:hover {
+                background: #1ebe57;
+            }
+
+
+    /*products*/
+    .product-section {
+        padding: 2rem 20px 4rem 20px;
+        text-align: center;
+        background: #8e9eab;
+        background: -webkit-linear-gradient(to bottom, #eef2f3, #8e9eab);
+        background: linear-gradient(to bottom, #eef2f3, #8e9eab);
+    }
+
+    /* --- Header Styling --- */
+    .product-header {
+        max-width: 800px;
+        margin: 0 auto 50px auto;
+    }
+
+        .product-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+
+        .product-header p {
+            font-size: 1rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+    .product-cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 45px;
+        flex-wrap: wrap;
+    }
+
+    .product-card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        max-width: 400px;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            /* Lift effect on hover */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 250px;
+    }
+
+    .card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-bottom: 1px solid lightgray;
+        /* Darken image to make label readable */
+    }
+
+    .image-label {
+        text-align: left;
+        padding: 20px;
+        color: #212121;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+
+    .card-content {
+        padding: 0 20px 20px 20px;
+        text-align: left;
+    }
+
+    .card-description {
+        font-size: 0.9rem;
+        color: #495057;
+        margin-bottom: 20px;
+        line-height: 1.5;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #e9ecef;
+        padding-top: 15px;
+    }
+
+    .product-variants {
+        font-size: 0.85rem;
+        color: #6c757d;
+        font-weight: bold;
+    }
+
+    .view-link {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+
+        .view-link:hover {
+            color: #0056b3;
+        }
+
+        .view-link i {
+            margin-left: 5px;
+        }
+
+    /*table*/
+    .container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .bolts {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .bolts img {
+            width: 100px;
+        }
+
+        .bolts h1 {
+            margin: 15px 0 10px;
+            font-size: 28px;
+            color: #222;
+        }
+
+    .materials {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+        .materials button {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 8px 18px;
+            margin: 5px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+            .materials button:hover {
+                background: #1e2535;
+                color: #fff;
+                border-color: lightgray;
+            }
+
+    .table-title {
+        text-align: center;
+        margin: 40px 0 20px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #444;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    table {
+        width: 100%;
+        border: 2px solid black;
+        border-collapse: collapse;
+        background: #fff;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    thead {
+        background: #1e2535;
+        color: #fff;
+    }
+
+
+
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: center;
+        border: 2px solid black;
+    }
+
+    tbody tr:hover {
+        background: #f1f7ff;
+    }
+
+    th {
+        text-transform: uppercase;
+        font-size: 14px;
+        background: #1e2535;
+        color: white;
+    }
+
+    td {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .table-2nd th,
+    td {
+        text-align: left;
+    }
+
+    /*expertise*/
+    .expertise-section {
+        width: 100%;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: white;
+    }
+
+    .expertise-header h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .expertise-header p {
+        font-size: 1.1em;
+        color: #666;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        line-height: 1.6;
+    }
+
+    .expertise-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        flex: 1 1 300px;
+        /* Allows cards to grow and shrink, with a base width */
+        max-width: 350px;
+        text-align: left;
+    }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin: 20px 20px 10px 20px;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #777;
+            padding: 0 20px 20px 20px;
+            line-height: 1.5;
+        }
+
+    @@media (max-width: 950px) {
+        .hero
+
+    {
+        flex-direction: column;
+        text-align: left;
+        padding: 50px 5%;
+        gap: 50px;
+    }
+
+    .hero-image {
+        margin-top: 0px;
+        min-height: 250px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.62rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 25px;
+        text-align: justify;
+    }
+
+    .hero-btn-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    /*model*/
+    .modal-content {
+        width: 90%;
+        padding: 25px 15px;
+    }
+
+    /*table*/
+    th,
+    td {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    }
+</style>
+
+
+
+<!--hero-->
+
+<section class="hero">
+    <div class="hero-text">
+
+        <h1>Engineered Bolts for Unmatched Performance</h1>
+        <p>
+            Our bolts are designed to deliver strength where it matters most. From heavy construction projects to
+            precision machinery, we provide a complete range of industrial-grade bolts that guarantee secure
+            fastening, durability, and reliability in every application.
+        </p>
+
+        <div class="hero-btn-group">
+            <a href="#Bolts" class="hero-btn hero-btn-primary">Explore Bolts</a>
+            <a class="hero-btn hero-btn-secondary openBtn" onclick="event.preventDefault()">Contact Us</a>
+        </div>
+
+
+    </div>
+
+    <div class="hero-image">
+        <img src="Images/hero-img.png" alt="Dawar Steels">
+
+
+    </div>
+</section>
+
+<!--Products-->
+<section class="product-section" id="Bolts">
+    <div class="product-header">
+        <h1>Our Premium Bolt Range</h1>
+        <p>
+            Explore our range of durable, high-quality bolts crafted with precision to deliver reliable performance
+            for every industrial need.
+        </p>
+    </div>
+
+    <div class="product-cards-container">
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/U BOLTS.jpg" alt="U BOLTS" class="card-image">
+            </div>
+            <div class="image-label">U BOLTS</div>
+            <div class="card-content">
+                <p class="card-description">
+                    U bolts, shaped like the letter "U," are primarily used to secure pipes
+                    and round objects. Made from high-quality stainless steel, they provide a reliable grip and
+                    excellent corrosion resistance.
+                </p>
+                <div class="card-footer">
+
+                    <a href="U BOLTS/U-BOLTS.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/STUD BOLT.jpg" alt="STUD BOLT" class="card-image">
+
+            </div>
+            <div class="image-label">STUD BOLT</div>
+            <div class="card-content">
+                <p class="card-description">
+                    Stud bolts consist of a threaded rod with no head and are typically used
+                    in conjunction with nuts to fasten two or more components together. They are widely used in
+                    flanged joints.
+                </p>
+                <div class="card-footer">
+
+                    <a href="STUD BOLTS/STUD-BOLTS.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/ANCHOR BOLT.jpg" alt="ANCHOR BOLT" class="card-image">
+
+            </div>
+            <div class="image-label">ANCHOR BOLT</div>
+            <div class="card-content">
+                <p class="card-description">
+                    Anchor bolts are used to attach structural elements to concrete. They
+                    provide a strong hold and are crucial for ensuring the stability of buildings and other heavy
+                    structures.
+                </p>
+                <div class="card-footer">
+
+                    <a href="ANCHOR BOLT/ANCHOR-BOLT.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/J TYPE FOUNDATION BOLT.jpg" alt="J TYPE FOUNDATION BOLT" class="card-image">
+
+            </div>
+            <div class="image-label">J TYPE FOUNDATION BOLT</div>
+            <div class="card-content">
+                <p class="card-description">
+                    Foundation bolts are designed to secure structures to their foundations,
+                    providing stability and support. They are commonly used in construction for anchoring columns.
+                </p>
+                <div class="card-footer">
+
+                    <a href="J TYPE FOUNDATION BOLT/J-TYPE-FOUNDATION-BOLT.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/L TYPE BOLTS.jpg" alt="L TYPE BOLTS" class="card-image">
+
+            </div>
+            <div class="image-label">L TYPE BOLTS</div>
+            <div class="card-content">
+                <p class="card-description">
+                    L type bolts are meticulously crafted with a focus on precision and
+                    quality, delivering dependable solutions for various applications in construction and industrial
+                    settings.
+                </p>
+                <div class="card-footer">
+
+                    <a href="L TYPE BOLTS/L-TYPE-BOLTS.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="card-image-wrapper">
+                <img src="Images/V BOLTS.jpg" alt="V BOLTS / TV AERIAL BOLTS" class="card-image">
+
+            </div>
+            <div class="image-label">V BOLTS / TV AERIAL BOLTS</div>
+            <div class="card-content">
+                <p class="card-description">
+                    V bolts and TV aerial bolts are meticulously crafted with a focus on
+                    precision and quality, delivering dependable solutions for various applications. Built to last
+                    in tough environments.
+                </p>
+                <div class="card-footer">
+
+                    <a href="V BOLTS/V-BOLTS.html" class="view-link">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--table-->
+<div class="container">
+
+    <div class="bolts">
+
+        <h1>Bolts Forms & Availability</h1>
+    </div>
+
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Products</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Stainless Steel Heavy Hex Bolts</td>
+                    <td>Stainless Steel Hollow Hex Bolts</td>
+                    <td rowspan="7">M 02 to M 160, Custom Sizes</td>
+                </tr>
+                <tr>
+                    <td>Carbon Steel Hollow Allen Bolts</td>
+                    <td>Alloy Steel Machine Bolts</td>
+                </tr>
+                <tr>
+                    <td>Incoloy Socket Head Bolts</td>
+                    <td>Titanium Hex Flange Bolts</td>
+                </tr>
+                <tr>
+                    <td>Nickel Eye Bolts</td>
+                    <td>Alloy 20 Lag Bolts</td>
+                </tr>
+                <tr>
+                    <td>Hastelloy J Bolts</td>
+                    <td>Titanium U Bolts</td>
+                </tr>
+                <tr>
+                    <td>Cu-Ni Shoulder Bolts</td>
+                    <td>Monel Elevator Bolts</td>
+                </tr>
+                <tr>
+                    <td>SMO 254 Hanger Bolts</td>
+                    <td>Inconel Allen Bolts</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="bolts">
+
+        <h1>Bolts, High Tensile Bolt Specification</h1>
+    </div>
+
+
+    <!-- Table -->
+    <div class="table-container table-2nd">
+        <table>
+
+
+            <tbody>
+                <tr>
+                    <th>Bolt size</th>
+                    <td>M 02 to M 160, Custom Sizes</td>
+                </tr>
+                <tr>
+                    <th>Bolts Length</th>
+                    <td>3 mm to 200 mm</td>
+                </tr>
+                <tr>
+                    <th>Bolt</th>
+                    <td>UNF, BSW, BSF, METRIC, UNC, or as required</td>
+                </tr>
+                <tr>
+                    <th>Standard of Bolts</th>
+                    <td>
+                        IS1364, ISO 4014, ISO 4017, DIN 933, DIN 931, BS 1083, BS 1768, ASME B18.2.1, JIS
+                        B1180, DIN 558, ISO 4018, DIN-EN14399-4, DIN 601, ISO 4016, CSN 21301, EU 24016, DIN
+                        7968, DIN7990, ASME B18.2.1, B18.5
+                    </td>
+                </tr>
+                <tr>
+                    <th>Form of Bolts</th>
+                    <td>Hex, Threading, Square, Round as per Gauge Etc.</td>
+                </tr>
+                <tr>
+                    <th>Raw materials Source</th>
+                    <td>JSPL, Mukund Steel, Tata Steel, Dhamma Steel, Usha Martin, etc.</td>
+                </tr>
+                <tr>
+                    <th>Threads Configuration</th>
+                    <td>
+                        ASME B1.1 2A/3A – 2B/3B Inch Unified Threads and B1.13M 6h-6G Metric Coarse Threads
+                    </td>
+                </tr>
+                <tr>
+                    <th>Certification</th>
+                    <td>Dual Certified As per ASTM &amp; ASME Codes</td>
+                </tr>
+                <tr>
+                    <th>Popular Types of Bolts</th>
+                    <td>
+                        Hex Bolts, Flange Bolts, Hex Head Bolts, Lag Bolts, Square Bolts, Eye Bolts, U
+                        Bolts, T Bolts, Countersunk Bolts, etc.
+                    </td>
+                </tr>
+                <tr>
+                    <th>Threads</th>
+                    <td>
+                        Unless otherwise specified, the threads shall be rolled or cut and tapped
+                        horizontally or vertically
+                    </td>
+                </tr>
+                <tr>
+                    <th>Test Certificate of Bolts</th>
+                    <td>as per EN 10204 / 3.1 Manufacturer Test Certificate</td>
+                </tr>
+                <tr>
+                    <th>Additional Certifications</th>
+                    <td>PED 97/23/EC Certified, Merkblatt AD 2000 W2 Certified</td>
+                </tr>
+                <tr>
+                    <th>Production process</th>
+                    <td>
+                        M24-M100: hot forging, M2-M24: Cold Forging, for custom-made connecting element
+                        machining and CNC
+                    </td>
+                </tr>
+                <tr>
+                    <th>Head drive of Bolts</th>
+                    <td>Six-Lobe, Phillips, Phillips/Slot, Slotted etc</td>
+                </tr>
+                <tr>
+                    <th>Packing of Bolts</th>
+                    <td>IN BULK: canton, pallet, Small Boxs / carton/pallet, or customer request</td>
+                </tr>
+                <tr>
+                    <th>Surface Coating</th>
+                    <td>
+                        PTFE Coated Bolts<br>
+                        Phosphate Coating<br>
+                        Teflon Coating<br>
+                        Zinc Coating<br>
+                        Hot Dipped Galvanizing Coating<br>
+                        Cadmium Coating<br>
+                        Xylon Coating
+                    </td>
+                </tr>
+                <tr>
+                    <th>Bolts finishing</th>
+                    <td>
+                        Coatings &amp; Finishes: Self-Colour, Passivated, Bright Zinc Plated (BZP), Hot Dip
+                        Galvanised (HDG), Sherardized, some special one like DACROMET Geometry and
+                        Mechanically Applied coating, Dacroment, nickel-plated, anodizing, plated
+                        zinc-nickel<br>
+                        Zinc (blue, black, yellow, white), black oxide
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<section class="expertise-section">
+    <div class="expertise-header">
+        <h1>Precision Manufacturing Expertise</h1>
+        <p>
+            At Dawar Steels, we take pride in our advanced manufacturing capabilities that blend innovation with
+            precision. Our facilities are equipped with the latest technologies to deliver high-quality steel
+            products that support infrastructure and industrial growth.
+        </p>
+    </div>
+    <div class="expertise-cards">
+        <div class="card">
+            <img src="images/expertise-1.png" alt="Advanced Rolling Technology">
+            <h3>Advanced Rolling Technology</h3>
+            <p>
+                We utilize state-of-the-art hot and cold rolling techniques to ensure uniformity, strength, and
+                durability across all our steel profiles.
+            </p>
+        </div>
+        <div class="card">
+            <img src="images/expertise-2.png" alt="Rigorous Quality Control">
+            <h3>Rigorous Quality Control</h3>
+            <p>
+                Every product undergoes a strict multi-stage inspection and testing process, guaranteeing compliance
+                with national and international quality standards.
+            </p>
+        </div>
+        <div class="card">
+            <img src="images/expertise-3.png" alt="Innovative Design & Engineering">
+            <h3>Innovative Design & Engineering</h3>
+            <p>
+                Offering advanced design and engineering support to create optimized steel solutions that enhance
+                performance, reduce waste, and meet industry-specific needs.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<script>
+            //contact page
+
+            // Select all buttons with the class 'openBtn'
+            const buttons = document.querySelectorAll(".openBtn");
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    let modal = document.createElement("div");
+                    modal.className = "modal";
+
+                    modal.innerHTML = `
+    <div class="modal-content">
+    <h2>Contact Us</h2>
+    <form id="demoForm">
+    <input type="text" id="name" name="name" placeholder="Your Name" required>
+    <input type="text" id="business" name="business" placeholder="Your Business" required>
+    <input type="email" id="email" name="email" placeholder="Your Email" required>
+    <input type="text" id="ProductName" name="ProductName" placeholder="Product You want" required>
+    <input type="tel" id="phone" name="phone" placeholder="Your Phone" required>
+
+    <button type="submit" class="cta-btn"
+        style="display:inline-block; padding:12px 24px; background:#25D366; color:#fff;
+               font-size:16px; font-weight:bold; border-radius:8px; text-decoration:none;
+               text-align:center; width:100%">
+        Submit
+    </button>
+    <button type="button" id="closeBtn">Close</button>
+    </form>
+    </div>
+                `;
+
+                    document.body.appendChild(modal);
+
+                    // Close button
+                    modal.querySelector("#closeBtn").addEventListener("click", function () {
+                        modal.remove();
+                    });
+
+                    // Handle form submit
+                    modal.querySelector("#demoForm").addEventListener("submit", function (e) {
+                        e.preventDefault();
+
+                        let name = document.getElementById("name").value;
+                        let business = document.getElementById("business").value;
+                        let email = document.getElementById("email").value;
+                        let ProductName = document.getElementById("ProductName").value;
+                        let phone = document.getElementById("phone").value;
+
+                        // Create WhatsApp message
+                        let message = `Hello, I Am Interested in Your Products.%0A
+    Name: ${name}%0A
+    Business: ${business}%0A
+    Email: ${email}%0A
+    Product Name: ${ProductName}%0A
+    Phone: ${phone}`;
+
+                        // WhatsApp link
+                        let whatsappURL = "https://wa.me/918000000746?text=" + message;
+
+                        // Open WhatsApp
+                        window.open(whatsappURL, "_blank");
+                    });
+                });
+            });
+</script>

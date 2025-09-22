@@ -1,0 +1,7 @@
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\DAWAR.exe
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\appsettings.json
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\DAWAR.dll
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\DAWAR.deps.json
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\DAWAR.runtimeconfig.json
+D:\DAWAR\DAWAR\obj\Release\net6.0\PubTmp\Out\DAWAR.pdb

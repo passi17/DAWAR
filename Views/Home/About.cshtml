@@ -1,0 +1,992 @@
+﻿@{
+    ViewData["Title"] = "About Page";
+}
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Top Header */
+        .top-header {
+            background: #1f2a44;
+            color: white;
+            font-size: 14px;
+            padding: 10px 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .top-header .left span {
+                margin-right: 20px;
+            }
+
+            .top-header a {
+                color: #ffc107;
+                text-decoration: none;
+            }
+
+                .top-header a:hover {
+                    text-decoration: underline;
+                }
+
+        /*navbar*/
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #eaeaea;
+            padding: 10px 20px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 20px;
+            color: black;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 45px;
+            border-radius: 8px;
+            margin-right: 8px;
+        }
+
+        .navbar-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #6a0dad;
+            }
+
+        .dropdown-toggle i {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: #fff;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            top: 100%;
+            left: 0;
+            z-index: 2000;
+        }
+
+            .dropdown-menu .dropdown-item {
+                padding: 10px 16px;
+                color: #333;
+                text-decoration: none;
+                display: block;
+                transition: background 0.3s ease;
+            }
+
+                .dropdown-menu .dropdown-item:hover {
+                    background: #f0f0f0;
+                    color: #6a0dad;
+                }
+
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-btn-outline {
+            background: #fff;
+            border: 1px solid black;
+            margin-right: 10px;
+        }
+
+            .nav-btn-outline:hover {
+                background: #f0f0f0;
+                color: #6a0dad;
+                border-color: #6a0dad;
+            }
+
+        .nav-btn-primary {
+            background: #212529;
+            color: #fff;
+        }
+
+            .nav-btn-primary:hover {
+                background: #6a0dad;
+            }
+
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /*hero*/
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 8%;
+            background: linear-gradient(rgb(238, 242, 243), rgb(142, 158, 171));
+            gap: 90px;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                line-height: 1.3;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                color: #444;
+                margin-bottom: 25px;
+                line-height: 1.6;
+            }
+
+        .hero-btn-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .hero-btn {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-btn-primary {
+            background: #343a40;
+            color: #fff;
+        }
+
+            .hero-btn-primary:hover {
+                background: #23272b;
+            }
+
+        .hero-btn-secondary {
+            background: white;
+            border: 2px solid black;
+            color: #333;
+        }
+
+            .hero-btn-secondary:hover {
+                background: #dee2e6;
+            }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            background-color: #000;
+            border-radius: 12px;
+        }
+
+            .hero-image img {
+                width: 100%;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+                background-color: white;
+                border: 5px solid black;
+            }
+
+        /* ===== MODAL ===== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            /* shorthand for top:0; right:0; bottom:0; left:0 */
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            width: 450px;
+            max-width: 90%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            animation: modalFade 0.3s ease-out;
+        }
+
+        @@keyframes modalFade {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-content input {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .modal-content button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .modal-content button#closeBtn {
+                background: #dc3545;
+                color: #fff;
+            }
+
+                .modal-content button#closeBtn:hover {
+                    background: #c82333;
+                }
+
+            .modal-content button.cta-btn {
+                background: #25d366;
+                color: #fff;
+                font-weight: bold;
+            }
+
+                .modal-content button.cta-btn:hover {
+                    background: #1ebe57;
+                }
+
+
+        /*about*/
+
+        section.about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            box-sizing: border-box;
+            background: #1e2535;
+            gap: 70px;
+        }
+
+        .about-container {
+            display: flex;
+            max-width: 1300px;
+            width: 100%;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* Left Image Panel (Navy background) */
+
+        .about-image {
+            flex: 1;
+            max-width: 500px;
+            width: 100%;
+            /* Navy Blue */
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid lightgray;
+        }
+
+            .about-image img {
+                width: 100%;
+                height: 100%;
+                display: block;
+                object-fit: cover;
+            }
+
+        /* Right Content Panel (Card Style) */
+
+        .about-content {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border: 4px solid #f59e0b;
+            /* Gold Accent */
+        }
+
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        .about-content h5 {
+            color: #f59e0b;
+            /* Gold */
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .about-content p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /*expertise*/
+        .expertise-section {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .expertise-header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .expertise-header p {
+            font-size: 1.1em;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .expertise-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            flex: 1 1 300px;
+            /* Allows cards to grow and shrink, with a base width */
+            max-width: 350px;
+            text-align: left;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+            }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .card h3 {
+                font-size: 1.4em;
+                font-weight: bold;
+                color: #333;
+                margin: 20px 20px 10px 20px;
+            }
+
+            .card p {
+                font-size: 1em;
+                color: #777;
+                padding: 0 20px 20px 20px;
+                line-height: 1.5;
+            }
+
+        /*footer*/
+
+        footer {
+            background: #0f172a;
+            color: #d1d5db;
+            padding: 2rem 4rem;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+        }
+
+        /* Logo + description */
+        .footer-logo {
+            max-width: 260px;
+        }
+
+            .footer-logo img {
+                width: 48px;
+                height: 48px;
+                object-fit: contain;
+                margin-right: 10px;
+            }
+
+            .footer-logo h3 {
+                color: #fff;
+                font-size: 18px;
+                margin-bottom: 6px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .footer-logo p {
+                font-size: 14px;
+                color: #9ca3af;
+                margin-bottom: 15px;
+                line-height: 1.5;
+            }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+            .footer-social a {
+                color: #d1d5db;
+                font-size: 16px;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .footer-social a:hover {
+                    color: #60a5fa;
+                }
+
+        /* Column headings */
+        .footer-column {
+            text-align: left;
+        }
+
+            .footer-column h4 {
+                color: #fff;
+                font-size: 15px;
+                margin-bottom: 15px;
+                text-align: left;
+            }
+
+            .footer-column ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+                .footer-column ul li {
+                    margin-bottom: 10px;
+                }
+
+                    .footer-column ul li a {
+                        text-decoration: none;
+                        color: #d1d5db;
+                        font-size: 14px;
+                        transition: color 0.3s;
+                    }
+
+                        .footer-column ul li a:hover {
+                            color: #60a5fa;
+                        }
+
+        /* Contact info */
+        .contact-info p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+        }
+
+        .contact-info i {
+            color: #60a5fa;
+        }
+
+        /* Bottom strip */
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+            .footer-bottom a {
+                text-decoration: none;
+                color: #9ca3af;
+                margin-left: 15px;
+                transition: color 0.3s;
+            }
+
+                .footer-bottom a:hover {
+                    color: #60a5fa;
+                }
+
+        @@media (max-width: 950px) {
+            /*top header*/
+            .top-header .left span {
+                display: flex;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                background: #eaeaea;
+                margin-top: 10px;
+            }
+
+                .navbar-nav.show {
+                    display: flex;
+                }
+
+            .nav-item {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            /* Dropdown in mobile */
+            .dropdown-menu {
+                position: relative;
+                box-shadow: none;
+                margin-left: 15px;
+                margin-top: 10px;
+            }
+
+            .dropdown-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* centers text + icon */
+                gap: 5px;
+                /* spacing between text and icon */
+            }
+
+            .navbar-actions {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: left;
+                padding: 50px 5%;
+                gap: 50px;
+            }
+
+            .hero-image {
+                margin-top: 0px;
+                min-height: 250px;
+            }
+
+            .hero-text h1 {
+                font-size: 1.62rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+                color: #444;
+                margin-bottom: 25px;
+                text-align: justify;
+            }
+
+            .hero-btn-group {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            /*model*/
+            .modal-content {
+                width: 90%;
+                padding: 25px 15px;
+            }
+            /*about*/
+            section.about {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 50px 20px 80px 20px;
+                box-sizing: border-box;
+                gap: 70px;
+            }
+
+            .about-container {
+                display: flex;
+                flex-direction: column;
+                max-width: 1300px;
+                width: 100%;
+                gap: 40px;
+                flex-wrap: wrap;
+            }
+            /* Left Image Panel (Navy background) */
+            .about-image {
+                flex: 1;
+                max-width: 1500px;
+                min-width: 200px;
+                width: 100%;
+                border-radius: 20px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                max-height: 750px;
+            }
+
+            .about-content {
+                flex: 1;
+                min-width: 300px;
+                padding: 20px;
+            }
+
+                .about-content h5 {
+                    margin-bottom: 15px;
+                }
+
+                .about-content h2 {
+                    font-size: 25px;
+                }
+
+                .about-content p {
+                    text-align: justify;
+                }
+            /*footer*/
+
+            .footer-bottom {
+                text-align: center;
+            }
+
+            .footer-container {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+
+    
+
+    <!--hero-->
+
+    <section class="hero">
+        <div class="hero-text">
+
+            <h1>Building Tomorrow, Today. With Dawar Steels.</h1>
+            <p>
+                For over four decades, Dawar Steels has been at the
+                forefront of the steel industry, delivering unparalleled quality
+                and innovation. We are committed to shaping a stronger,
+                more sustainable future.
+            </p>
+
+            <div class="hero-btn-group">
+                <a href="#About" class="hero-btn hero-btn-primary">Our Story</a>
+                <a class="hero-btn hero-btn-secondary openBtn" onclick="event.preventDefault()">
+                    Contact
+                    Us
+                </a>
+            </div>
+
+
+        </div>
+
+        <div class="hero-image">
+            <img src="Images/hero-img.png" alt="Dawar Steels">
+
+
+        </div>
+    </section>
+
+    <!-- About  -->
+    <section class="about" id="About">
+        <div class="about-container">
+
+            <!-- Left Image -->
+            <div class="about-image">
+                <img src="images/about-1.png" alt="Dawar Steels">
+            </div>
+
+            <!-- Right Content -->
+            <div class="about-content">
+                <h5>ABOUT DAWAR STEELS</h5>
+                <h2>
+                    Our Enduring Legacy: A Journey of Strength
+                </h2>
+                <p>
+                    Founded in 2012, Dawar Steels began with a vision to
+                    revolutionize the construction and infrastructure sectors.
+                    From humble beginnings, we've grown into a leading
+                    manufacturer, driven by innovation and an unwavering
+                    commitment to quality. Our journey is marked by continuous
+                    advancements in technology and a dedication to sustainable
+                    practices.
+                    <br><br>
+                    Over the decades, we've expanded our product lines, invested
+                    in cutting-edge facilities, and built a team of industry experts.
+                    Each milestone reflects our passion for excellence and our
+                    promise to deliver steel products that stand the test of time.
+                </p>
+
+            </div>
+        </div>
+
+        <div class="about-container reverse">
+
+            <!-- Left Image -->
+
+            <div class="about-image">
+                <img src="images/about-2.png" alt="Dawar Steels">
+            </div>
+
+            <!-- Right Content -->
+            <div class="about-content ">
+                <h5>ABOUT DAWAR STEELS</h5>
+                <h2>
+                    Strength That Builds the Future
+                </h2>
+                <p>
+                    At Dawar Steels, we believe that strong foundations create lasting success. With over a decade of
+                    expertise in the steel industry, we specialize in delivering high-quality steel products that power
+                    construction, infrastructure, and industrial projects across India.
+                    <br><br>
+                    Steel is the backbone of modern development, and we ensure that every product we supply meets the
+                    highest standards of durability, strength, and performance. From TMT bars to structural steel, our
+                    solutions are trusted by builders, engineers, and architects to create projects that stand the test
+                    of time.
+                    <br><br>
+                    Our advanced manufacturing processes, strict quality control, and customer-focused approach make us
+                    a reliable partner for all your steel requirements. Whether it’s residential, commercial, or
+                    large-scale industrial projects, Dawar Steels is committed to providing unmatched strength and
+                    value.
+                    <br><br>
+                    <strong> Dawar Steels – Forging Excellence, Building Trust. </strong>
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="expertise-section">
+        <div class="expertise-header">
+            <h1>Precision Manufacturing Expertise</h1>
+            <p>
+                At Dawar Steels, we take pride in our advanced manufacturing capabilities that blend innovation with
+                precision. Our facilities are equipped with the latest technologies to deliver high-quality steel
+                products that support infrastructure and industrial growth.
+            </p>
+        </div>
+        <div class="expertise-cards">
+            <div class="card">
+                <img src="images/expertise-1.png" alt="Advanced Rolling Technology">
+                <h3>Advanced Rolling Technology</h3>
+                <p>
+                    We utilize state-of-the-art hot and cold rolling techniques to ensure uniformity, strength, and
+                    durability across all our steel profiles.
+                </p>
+            </div>
+            <div class="card">
+                <img src="images/expertise-2.png" alt="Rigorous Quality Control">
+                <h3>Rigorous Quality Control</h3>
+                <p>
+                    Every product undergoes a strict multi-stage inspection and testing process, guaranteeing compliance
+                    with national and international quality standards.
+                </p>
+            </div>
+            <div class="card">
+                <img src="images/expertise-3.png" alt="Innovative Design & Engineering">
+                <h3>Innovative Design & Engineering</h3>
+                <p>
+                    Offering advanced design and engineering support to create optimized steel solutions that enhance
+                    performance, reduce waste, and meet industry-specific needs.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--footer-->
+    
+
+    <script>
+                // Toggle navbar on mobile
+                const hamburger = document.getElementById('hamburger');
+                const navbarNav = document.getElementById('navbarNav');
+                hamburger.addEventListener('click', () => {
+                    navbarNav.classList.toggle('show');
+                });
+
+                // Toggle dropdown on mobile
+                const productToggle = document.getElementById('productToggle');
+                const dropdownMenu = document.getElementById('dropdownMenu');
+
+                productToggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+                    }
+                });
+
+
+                //contact page
+
+                // Select all buttons with the class 'openBtn'
+                const buttons = document.querySelectorAll(".openBtn");
+
+                buttons.forEach(btn => {
+                    btn.addEventListener("click", function () {
+                        let modal = document.createElement("div");
+                        modal.className = "modal";
+
+                        modal.innerHTML = `
+        <div class="modal-content">
+        <h2>Contact Us</h2>
+        <form id="demoForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+        <input type="text" id="business" name="business" placeholder="Your Business" required>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+        <input type="text" id="ProductName" name="ProductName" placeholder="Product You want" required>
+        <input type="tel" id="phone" name="phone" placeholder="Your Phone" required>
+
+        <button type="submit" class="cta-btn"
+            style="display:inline-block; padding:12px 24px; background:#25D366; color:#fff;
+                   font-size:16px; font-weight:bold; border-radius:8px; text-decoration:none;
+                   text-align:center; width:100%">
+            Submit
+        </button>
+        <button type="button" id="closeBtn">Close</button>
+        </form>
+        </div>
+                    `;
+
+                        document.body.appendChild(modal);
+
+                        // Close button
+                        modal.querySelector("#closeBtn").addEventListener("click", function () {
+                            modal.remove();
+                        });
+
+                        // Handle form submit
+                        modal.querySelector("#demoForm").addEventListener("submit", function (e) {
+                            e.preventDefault();
+
+                            let name = document.getElementById("name").value;
+                            let business = document.getElementById("business").value;
+                            let email = document.getElementById("email").value;
+                            let ProductName = document.getElementById("ProductName").value;
+                            let phone = document.getElementById("phone").value;
+
+                            // Create WhatsApp message
+                            let message = `Hello, I Am Interested in Your Products.%0A
+        Name: ${name}%0A
+        Business: ${business}%0A
+        Email: ${email}%0A
+        Product Name: ${ProductName}%0A
+        Phone: ${phone}`;
+
+                            // WhatsApp link
+                            let whatsappURL = "https://wa.me/918000000746?text=" + message;
+
+                            // Open WhatsApp
+                            window.open(whatsappURL, "_blank");
+                        });
+                    });
+                });
+    </script>
+ 

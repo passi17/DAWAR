@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DAWAR</title>
+   @*  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+   @*  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+   @*  <link rel="stylesheet" href="~/DAWAR.styles.css" asp-append-version="true" /> *@
+</head>
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="left">
+            <span>📞 +91-8000000746</span>
+            <span>✉️ <a href="mailto:Dawarsteels@gmail.com">Dawarsteels@gmail.com</a></span>
+        </div>
+        <div class="right">
+            <span>🕒 Mon - Sat: 9:00 AM - 6:00 PM</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="Images/logo.jpg" alt="Dawar Steels" class="logo-image"> DAWAR STEELS
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <ul class="navbar-nav" id="navbarNav">
+            <li class="nav-item"><a href="/Home/index" class="nav-link">HOME</a></li>
+            <li class="nav-item"><a href="/Home/About" class="nav-link">ABOUT</a></li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="productToggle">
+                    PRODUCTS <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="/Home/Washers " class="dropdown-item">Washers</a>
+                    <a href="/Home/Bolts" class="dropdown-item">Bolts</a>
+                    <a href="/Home/Nuts" class="dropdown-item">Nuts</a>
+                </div>
+            </li>
+            <li class="nav-item"><a href="/Home/Quality" class="nav-link">QUALITY</a></li>
+            <li class="nav-item"><a href="/Home/Contact" class="nav-link">CONTACT</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a class="nav-button nav-btn-outline">Request Catalog</a>
+            <a class="nav-button nav-btn-primary openBtn">Chat with us</a>
+        </div>
+    </nav>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+
+            <!-- Logo & About -->
+            <div class="footer-logo">
+                <h3>
+                    <img src="Images/logo.jpg" alt="Dawar Steels Logo">
+                    Dawar Steels
+                </h3>
+                <p>
+                    Premium Steel Solutions<br>
+                    Leading manufacturer and supplier of high-quality washers, bolts, and nuts for over 12 years.
+                    Trusted by industries worldwide.
+                </p>
+
+
+            </div>
+
+            <!-- Products -->
+            <div class="footer-column">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="products/Washers/washers.html">Washers</a></li>
+                    <li><a href="products/Bolts/Bolts.html">Bolts</a></li>
+                    <li><a href="products/Nuts/Nuts.html">Nuts</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="About-us/About-us.html">About Us</a></li>
+                    <li><a href="Quality/Quality.html">Quality Standards</a></li>
+                    <li><a href="Contact/Contact.html">Contact</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-column contact-info">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> India</p>
+                <p><i class="fas fa-phone-alt"></i> +91 8000000746</p>
+                <p><i class="fas fa-envelope"></i> Dawarsteels@gmail.com</p>
+
+            </div>
+
+        </div>
+
+        <!-- Bottom strip -->
+        <div class="footer-bottom">
+            <p>© 2025 Dawar Steels. All rights reserved.</p>
+
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
